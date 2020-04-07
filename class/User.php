@@ -1,27 +1,33 @@
 <?php
 class User {
-    const STATUS_ADMIN = 0;
-    const STATUS_USER = 1;
-    const STATUS_USER_PUBLIC = 2;
+    const STATUS_ADMIN = 1;
+    const STATUS_USER = 2;
+    const STATUS_MODERATOR = 3;
+    const STATUS_PUBLIC = 4;
+    const STATUS_DELETED = 5;
 
     protected $id_user;
     protected $username;
-    protected $passwd;
     protected $email;
     protected $date;
+    protected $last_date;
     protected $img;
     protected $status;
+    protected $ip_address;
+    protected $passwd;
     // protected $baza;
 
     // konstruktor ----------------------------------------------------
     function __construct($username, $email, $passwd)
     {
+        $this->id_user = NULL;
         $this->username = $username;
         $this->email = $email;
-        $this->status=User::STATUS_USER_PUBLIC;
-        $this->img="img/anon.jpg";
-        $this->date = (new DateTime()) -> format("Y-m-d");
-        $this->id_user = NULL;
+        $this->status=4;//User::STATUS_USER_PUBLIC;
+        $this->img=1;//"img/anon.jpg";
+	$this->date = (new DateTime()) -> format("Y-m-d H:i:s");
+	$this->last_date = (new DateTime()) -> format("Y-m-d H:i:s");
+	$this->ip_address = $_SERVER['REMOTE_ADDR'];
         $this->passwd=md5($passwd);
         // $this->passwd=password_hash($passwd, PASSWORD_DEFAULT);
     }
@@ -29,32 +35,44 @@ class User {
     // baza -----------------------------------------------------------
     public function add_do_bazy($id='')
     {
-        $answer = "INSERT INTO `User` (`id_user`, `username`, `email`, `date`, `img`, `status`, `passwd`) VALUES ";
+// 	(NULL, 'Borys', 'mushkaborys@gmail.com', '2020-04-07 15:09:18', '2020-04-07 15:09:40', '3', '2', '127.0.0.1', MD5('1'));
+        $answer = 'INSERT INTO `User` (`id_user`, `username`, `email`, `creation_date`, `modification_date`, `id_img`, `id_status`, `ip_address`, `passwd`) VALUES ';
+
         if($id == '')
-            $answer .= "(NULL, '$this->username', '$this->email', '$this->date', '$this->img', $this->status, '$this->passwd');";
+            $answer .= "(NULL, '$this->username', '$this->email', '$this->date', '$this->last_date', '$this->img', '$this->status', '$this->address', '$this->passwd');";
         else
-            $answer .= "(".$this->id_user.", '$this->username', '$this->email', '$this->date', '$this->img', $this->status, '$this->passwd');";
+            $answer .= "(".$this->id_user.", '$this->username', '$this->email', '$this->date', '$this->last_date', '$this->img', '$this->status', '$this->address', '$this->passwd');";
         return $answer;
     }
     public function change_baze($baza)
     {
         // UPDATE `User` SET `username` = 'Test 4', `email` = 't4@gmail.c', `date` = '2019-12-18', `img` = 'img/map.jpg', `passwd` = 'd41d8cd98f00b204e9800998ecf8427e' WHERE `User`.`id_user` = 8;
-        $baza->answer('UPDATE `User` SET `username` = "'.$this->username.'", `email` = "'.$this->email.'", `date` = "'.$this->date.'", `img` = "'.$this->img.'", `passwd` = "'.$this->get_passwd().'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `username` = "'.$this->username.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `email` = "'.$this->email.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `creation_date` = "'.$this->date.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `modification_date` = "'.$this->last_date.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `id_img` = "'.$this->img.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `id_status` = "'.$this->status.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `ip_address` = "'.$this->ip_address.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `passwd` = "'.$this->get_passwd().'" WHERE `User`.`id_user` = '.$this->id_user);
 
         //$baza->answer($this->add_do_bazy($this->id_user));
     }
     public function delete_z_bazy($baza)
     {
-        $baza->answer('DELETE FROM `User` WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `id_status` = "5" WHERE `User`.`id_user` = '.$this->id_user);
+        //$baza->answer('DELETE FROM `User` WHERE `User`.`id_user` = '.$this->id_user);
     }
     public function set_z_bazy($dane, $index=0)
     {
         $this->id_user = $dane[$index]->id_user;
         $this->username = $dane[$index]->username;
         $this->email = $dane[$index]->email;
-        $this->date = $dane[$index]->date;
-        $this->img = $dane[$index]->img;
-        $this->status=$dane[$index]->status;
+        $this->date = $dane[$index]->creation_date;
+        $this->last_date = $dane[$index]->modification_date;
+        //$this->img = $dane[$index]->img;
+        //$this->status=$dane[$index]->status;
+        $this->ip_address=$dane[$index]->ip_address;
         $this->passwd=$dane[$index]->passwd;
     }
 
@@ -92,17 +110,21 @@ class User {
         $dane = filter_input_array(INPUT_POST, $args);
         
         $email = $dane["email"];
+        $ip_address = $_SERVER["REMOTE_ADDR"];
         $passwd = ''.md5(''.$dane["passwd"]);
         
         $userId = $db->selectUser($email, $passwd);
         
         if ($userId >= 0) //Poprawne dane
         { 
-            $db->answer("DELETE FROM `Session` WHERE `Session`.`id_user` = ".$userId);
+//             $time = ''.(new DateTime()) -> format("Y-m-d H:i:s");
+//             $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "2", "'.$time.'");');
+//          $db->answer("DELETE FROM `Session` WHERE `Session`.`id_user` = ".$userId);
 
             $time = ''.(new DateTime()) -> format("Y-m-d H:i:s");
             
-            $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "'.$time.'");');
+            $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "1", "'.$time.'");');
+            //$db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "'.$time.'");');
             return $userId;
         }
         else
@@ -112,13 +134,14 @@ class User {
     }
     function logout($db)
     {
-        $db->answer("DELETE FROM `Session` ORDER BY `Session`.`lastUpdate` DESC LIMIT 1");
+            $time = ''.(new DateTime()) -> format("Y-m-d H:i:s");
+            $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "2", "'.$time.'");');
     }
     function getLoggedInUser($db, $sessionId) {
         $userId = -1;
         //wynik $userId - znaleziono wpis z id sesji w tabeli Session
         //wynik -1 - nie ma wpisu dla tego id sesji w tabeli Session
-        $sql = "SELECT * FROM Session WHERE `Session`.`id_session`='$sessionId'";
+        $sql = "SELECT * FROM Session WHERE `Session`.`id_status`=1 `Session`.`id_session`='$sessionId'";
         if ($result = $db->mysqli->query($sql))
         {
             $ile = $result->num_rows;
@@ -179,7 +202,7 @@ class User {
         if ($userId > 0) //Poprawne dane
         {
             $time = ''.(new DateTime()) -> format("Y-m-d H:i:s");
-            $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "'.$time.'");');
+            $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "1", "'.$time.'");');
             
             return $userId;
         }
@@ -193,10 +216,12 @@ class User {
     {
         $user->set_username($dane["username"]);
         $user->set_email($dane["email"]);
+        $user->set_date($dane["creation_date"]);
+        $user->set_last_date($dane["modification_date"]);
+        $user->set_img($dane["id_img"]);
+        $user->set_status($dane["id_status"]);
+        $user->set_ip_address($dane["ip_address"]);
         $user->set_passwd($dane["passwd"]);
-        $user->set_status(1);
-        $user->set_date();
-        $user->set_img($dane["img"]);
 
         $ob->answer($user->add_do_bazy());
     }
@@ -240,14 +265,14 @@ class User {
                 <tr>
                     <td><label for = "adresmail">Adres e-mail:</label></td>
                     <td><input type="text" value="'.$this->email.'" placeholder="'.$this->email.'" name="email"/></td>
-                </tr>
-                <tr>
-                    <td rowspan=2><label for = "img">Zdjęcie użytkownika:</label></td>
-                    <td class="site-header-content"><img class="author-profile-image" src="'.$this->img.'" width="200" height="200" alt="'.$this->username.'"/></td>
-                </tr>
-                <tr>
-                    <td><input type="text" value="'.$this->img.'" placeholder="'.$this->img.'" name="img"/></td>
                 </tr>';
+//                 <tr>
+//                     <td rowspan=2><label for = "img">Zdjęcie użytkownika:</label></td>
+//                     <td class="site-header-content"><img class="author-profile-image" src="'.$this->img.'" width="200" height="200" alt="'.$this->username.'"/></td>
+//                 </tr>
+//                 <tr>
+//                     <td><input type="text" value="'.$this->img.'" placeholder="'.$this->img.'" name="img"/></td>
+//                 </tr>';
 
 		$form.='<tr>
                     <td><label for = "stary_passwd">Stary password:</label></td>
@@ -275,7 +300,7 @@ class User {
             <header class="post-full-header">
                 <section class="post-full-meta">';
 
-        $now = (new DateTime()) -> format("Y-m-d");
+        $now = (new DateTime()) -> format("Y-m-d H:i:s");
         $tresc.='<time class="post-full-meta-date" datetime="'.$now.'">'.$this->get_date_format("d F Y", ''.$now).'</time>';
 
         $tresc.='</section>';
@@ -319,14 +344,17 @@ class User {
 	if(md5($dane['stary_passwd']) == $this->get_passwd())
 	        $this->set_passwd(md5($dane["passwd"]));
 
-        $dzb = $ob->dane_z_bazy("SELECT lastUpdate FROM `Session`  ORDER BY `Session`.`lastUpdate` DESC LIMIT 1");
+        $dzb = $ob->dane_z_bazy("SELECT lastUpdate FROM `Session` WHERE `Session`.`id_user`=`".$this->id_user."` ORDER BY `Session`.`lastUpdate` DESC LIMIT 1");
+//         $dzb = $ob->dane_z_bazy("SELECT lastUpdate FROM `Session` WHERE `Session`.`id_user`=`".$this->id_user."` AND  `Session`.`id_status`= ORDER BY `Session`.`lastUpdate` DESC LIMIT 1");
+
         $time = $dzb[0]->lastUpdate;
 
         $ob->answer($this->change_baze($ob));
         
-        $ob->answer("DELETE FROM `Session` WHERE `Session`.`id_user` = ".$this->id_user);
+//         $ob->answer("DELETE FROM `Session` WHERE `Session`.`id_user` = ".$this->id_user);
 
-        $ob->answer('INSERT INTO `Session` (`id_session`, `id_user`, `lastUpdate`) VALUES ("'.$this->id_user.' '.$time.'", '.$this->id_user.', "'.$time.'");');
+        $ob->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "1", "'.$time.'");');
+//         $ob->answer('INSERT INTO `Session` (`id_session`, `id_user`, `lastUpdate`) VALUES ("'.$this->id_user.' '.$time.'", '.$this->id_user.', "'.$time.'");');
     }
 
     // ----------------------------------------------------------------
@@ -358,8 +386,10 @@ class User {
     // ----------------------------------------------------------------
     function usun_user($ob, $dane)
     {
-        $ob->answer("DELETE FROM `Session` WHERE `Session`.`id_user` = ".$dane[0]->id_user);
-        $ob->answer('DELETE FROM `User` WHERE `User`.`id_user` = '.$dane[0]->id_user);
+        $ob->answer('UPDATE `User` SET `id_status` = "5" WHERE `User`.`id_user` = '.$dane[0]->id_user);
+        $ob->answer('UPDATE `Session` SET `id_status` = "2" WHERE `Session`.`id_user` = '.$dane[0]->id_user);
+//         $ob->answer("DELETE FROM `Session` WHERE `Session`.`id_user` = ".$dane[0]->id_user);
+//         $ob->answer('DELETE FROM `User` WHERE `User`.`id_user` = '.$dane[0]->id_user);
     }
 
     // interfejsy klasy------------------------------------------------
@@ -419,7 +449,7 @@ class User {
     public function set_date($date='')
     {
         if($date=='')
-            $this->date = (new DateTime()) -> format("Y-m-d");
+            $this->date = (new DateTime()) -> format("Y-m-d H:i:s");
             // $this->date = (new DateTime()) -> format("d F Y");
         else
             $this->date = $date;
@@ -453,8 +483,10 @@ class User {
         // $this->status = $status;
         switch($status)
         {
-            case 0: $this->status=User::STATUS_ADMIN; break;
-            case 1: $this->status=User::STATUS_USER; break;
+            case 1: $this->status=User::STATUS_ADMIN; break;
+            case 2: $this->status=User::STATUS_USER; break;
+            case 3: $this->status=User::STATUS_MODERATOR; break;
+            case 5: $this->status=User::STATUS_DELETED; break;
             default: $this->status=User::STATUS_USER_PUBLIC;
         }
     }

@@ -1,62 +1,54 @@
 <?php
-include_once("class/Test.php");
+$indicesServer = array('PHP_SELF',
+'argv',
+'argc',
+'GATEWAY_INTERFACE',
+'SERVER_ADDR',
+'SERVER_NAME',
+'SERVER_SOFTWARE',
+'SERVER_PROTOCOL',
+'REQUEST_METHOD',
+'REQUEST_TIME',
+'REQUEST_TIME_FLOAT',
+'QUERY_STRING',
+'DOCUMENT_ROOT',
+'HTTP_ACCEPT',
+'HTTP_ACCEPT_CHARSET',
+'HTTP_ACCEPT_ENCODING',
+'HTTP_ACCEPT_LANGUAGE',
+'HTTP_CONNECTION',
+'HTTP_HOST',
+'HTTP_REFERER',
+'HTTP_USER_AGENT',
+'HTTPS',
+'REMOTE_ADDR',
+'REMOTE_HOST',
+'REMOTE_PORT',
+'REMOTE_USER',
+'REDIRECT_REMOTE_USER',
+'SCRIPT_FILENAME',
+'SERVER_ADMIN',
+'SERVER_PORT',
+'SERVER_SIGNATURE',
+'PATH_TRANSLATED',
+'SCRIPT_NAME',
+'REQUEST_URI',
+'PHP_AUTH_DIGEST',
+'PHP_AUTH_USER',
+'PHP_AUTH_PW',
+'AUTH_TYPE',
+'PATH_INFO',
+'ORIG_PATH_INFO') ;
 
-$local_word = array("word1","word2","question 3", "question 4");
-$local_answer = array("answer1","answer2", "odpowiedz 3", "odpoweidz 5");
-
-foreach($local_word as $key => $lw)
-{
-	$clas_test[$key] = new Test($local_word[$key], $local_answer[$key]);
-	echo $clas_test[$key]->get_question()." -> ";
-	echo $clas_test[$key]->get_answer()."<br/>";
+echo '<table cellpadding="10">' ;
+foreach ($indicesServer as $arg) {
+    if (isset($_SERVER[$arg])) {
+        echo '<tr><td>'.$arg.'</td><td>' . $_SERVER[$arg] . '</td></tr>' ;
+    }
+    else {
+        echo '<tr><td>'.$arg.'</td><td>-</td></tr>' ;
+    }
 }
-
-echo $clas_test[0]->set_question("word zm 1")."<br/>";
-
-foreach($local_word as $key => $lw)
-{
-	echo $clas_test[$key]->get_question()." -> ";
-	echo $clas_test[$key]->get_answer()."<br/>";
-}
-
-$form = '<form method="get" action="#" >';
-$form .= '<table>';
-
-foreach($clas_test as $key => $lw)
-{
-	$form .= "".$clas_test[$key]->get_input();
-}
-$form .= '<tr>
-	<td><a href="#">test</a></td>
-        <td><input type="submit" value="submit" name="wynik"/></td>';
-
-$form .= '</table>
-	</form>';
-
-echo $form;
-
-if(filter_input(INPUT_GET,"wynik"))
-{
-	$wynik = '<table>';
-	foreach($clas_test as $key => $ct)
-	{
-		$dane = $ct->word_walidation("get");
-		$ct->set_enter_word($dane[$ct->get_name()]);
-		
-		$wynik .= '<tr><td>'.$ct->get_question().'</td>';
-		if($ct->is_true())
-		{
-			$wynik .= '<td> '.$ct->get_answer().'</td>';
-			$wynik .= '<td>true</td></tr>';
-		}
-		else
-		{
-			$wynik .= '<td> '.$ct->get_enter_word().'</td>';
-			$wynik .= '<td>false</td></tr>';
-		}
-	}
-	$wynik .= '</table>';
-	echo $wynik;
-}
-
+echo '</table>' ; 
 ?>
+

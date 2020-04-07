@@ -20,9 +20,9 @@ if(($dane = $ob->dane_z_bazy($sql)) != NULL)
 
 $strona_akt = new Strona($ob);
 
-// include_once('setting/main_settings.php');
+include_once('setting/main_settings.php');
 
-$strona='praca_techniczna';
+//$strona='praca_techniczna';
 
 //dołącz wybrany plik z ustawioną zmienną $tytul i $zawartosc
 $plik = "skrypty/" . $strona . ".php";

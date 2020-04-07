@@ -133,11 +133,15 @@ CREATE TABLE `Access` (
 --
 
 CREATE TABLE `Session` (
-  `id_session` varchar(100) NOT NULL,
+  `id_session` int(10) UNSIGNED NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
   `id_status` int(10) UNSIGNED NOT NULL,
   `lastUpdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `Status` (`id_status`, `description`) VALUES 
+(NULL, 'ENTER'),
+(NULL, 'EXIT');
 
 -- --------------------------------------------------------
 
@@ -210,7 +214,7 @@ CREATE TABLE `User` (
   `modification_date` datetime NOT NULL,
   `id_img` int(10) UNSIGNED NOT NULL,
   `id_status` int(10) UNSIGNED NOT NULL,
-  `ip_addres` varchar(15) NOT NULL,
+  `ip_address` varchar(15) NOT NULL,
   `passwd` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
