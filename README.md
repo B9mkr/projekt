@@ -1,12 +1,6 @@
-## Użytkownicy:
+# Projekt
 
-|e-mail|password|
-|---:|:---|
-|mushkaborys@gmail.com|1|
-|t4@g.c|Test4|
-|admin@admin.com|admin|
-
-#### Aby przynieść projekt potrzebno:
+### Aby przynieść projekt potrzebno:
 
 Wykonać polecenie z folderu *projekt* dla tego żeby można było zobaczyć treść w postach:
 
@@ -37,6 +31,10 @@ Dostęp składa się z dwuch liczb:
 > 14, 12, 11, 16
 >
 > 64, 62, 61, 66
+
+---
+
+Inne
 
 ```sql
 CREATE USER 'User'@'%' IDENTIFIED VIA mysql_native_password USING '***';GRANT SELECT, INSERT ON *.* TO 'User'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;GRANT ALL PRIVILEGES ON `projekt`.* TO 'User'@'%'; 
