@@ -46,4 +46,31 @@ REVOKE ALL PRIVILEGES ON `projekt`.* FROM 'User'@'%'; GRANT SELECT, INSERT ON `p
 
 ```
 
+---
+
+## Funkcje:
+
+Img
+
+```sql
+DELIMITER |
+CREATE OR REPLACE FUNCTION UrlImg(id INT)
+RETURNS VARCHAR(100)
+BEGIN
+        RETURN (SELECT i.url FROM Img i WHERE i.id_img = id);
+END |
+DELIMITER ;
+```
+
+Access
+
+```sql
+DELIMITER |
+CREATE OR REPLACE FUNCTION DescriptionAccess(id INT)
+RETURNS VARCHAR(100)
+BEGIN
+        RETURN (SELECT a.description FROM Access a WHERE a.id_access = id);
+END |
+DELIMITER ;
+```
 
