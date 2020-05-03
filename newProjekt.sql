@@ -123,8 +123,14 @@ CREATE TABLE `Img` (
 
 CREATE TABLE `Access` (
   `id_access` int(10) UNSIGNED NOT NULL,
-  `description` varchar(100) NOT NULL
+  `description` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `Access` (`id_access`, `description`) VALUES 
+(1, 'N'),
+(2, 'W'),
+(3, 'R'),
+(4, 'RW');
 
 -- --------------------------------------------------------
 

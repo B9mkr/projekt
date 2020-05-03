@@ -9,8 +9,8 @@ class User {
     protected $id_user;
     protected $username;
     protected $email;
-    protected $date;
-    protected $last_date;
+    protected $creation_date;
+    protected $modification_date;
     protected $img;
     protected $status;
     protected $ip_address;
@@ -25,9 +25,9 @@ class User {
         $this->email = $email;
         $this->status=4;//User::STATUS_USER_PUBLIC;
         $this->img=1;//"img/anon.jpg";
-	$this->date = (new DateTime()) -> format("Y-m-d H:i:s");
-	$this->last_date = (new DateTime()) -> format("Y-m-d H:i:s");
-	$this->ip_address = $_SERVER['REMOTE_ADDR'];
+    	$this->creation_date = (new DateTime()) -> format("Y-m-d H:i:s");
+    	$this->modification_date = (new DateTime()) -> format("Y-m-d H:i:s");
+    	$this->ip_address = $_SERVER['REMOTE_ADDR'];
         $this->passwd=md5($passwd);
         // $this->passwd=password_hash($passwd, PASSWORD_DEFAULT);
     }
@@ -39,9 +39,9 @@ class User {
         $answer = 'INSERT INTO `User` (`id_user`, `username`, `email`, `creation_date`, `modification_date`, `id_img`, `id_status`, `ip_address`, `passwd`) VALUES ';
 
         if($id == '')
-            $answer .= "(NULL, '$this->username', '$this->email', '$this->date', '$this->last_date', '$this->img', '$this->status', '$this->address', '$this->passwd');";
+            $answer .= "(NULL, '$this->username', '$this->email', '$this->creation_date', '$this->modification_date', '$this->img', '$this->status', '$this->address', '$this->passwd');";
         else
-            $answer .= "(".$this->id_user.", '$this->username', '$this->email', '$this->date', '$this->last_date', '$this->img', '$this->status', '$this->address', '$this->passwd');";
+            $answer .= "(".$this->id_user.", '$this->username', '$this->email', '$this->creation_date', '$this->modification_date', '$this->img', '$this->status', '$this->address', '$this->passwd');";
         return $answer;
     }
     public function change_baze($baza)
@@ -49,8 +49,8 @@ class User {
         // UPDATE `User` SET `username` = 'Test 4', `email` = 't4@gmail.c', `date` = '2019-12-18', `img` = 'img/map.jpg', `passwd` = 'd41d8cd98f00b204e9800998ecf8427e' WHERE `User`.`id_user` = 8;
         $baza->answer('UPDATE `User` SET `username` = "'.$this->username.'" WHERE `User`.`id_user` = '.$this->id_user);
         $baza->answer('UPDATE `User` SET `email` = "'.$this->email.'" WHERE `User`.`id_user` = '.$this->id_user);
-        $baza->answer('UPDATE `User` SET `creation_date` = "'.$this->date.'" WHERE `User`.`id_user` = '.$this->id_user);
-        $baza->answer('UPDATE `User` SET `modification_date` = "'.$this->last_date.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `creation_date` = "'.$this->creation_date.'" WHERE `User`.`id_user` = '.$this->id_user);
+        $baza->answer('UPDATE `User` SET `modification_date` = "'.$this->modification_date.'" WHERE `User`.`id_user` = '.$this->id_user);
         $baza->answer('UPDATE `User` SET `id_img` = "'.$this->img.'" WHERE `User`.`id_user` = '.$this->id_user);
         $baza->answer('UPDATE `User` SET `id_status` = "'.$this->status.'" WHERE `User`.`id_user` = '.$this->id_user);
         $baza->answer('UPDATE `User` SET `ip_address` = "'.$this->ip_address.'" WHERE `User`.`id_user` = '.$this->id_user);
@@ -68,8 +68,8 @@ class User {
         $this->id_user = $dane[$index]->id_user;
         $this->username = $dane[$index]->username;
         $this->email = $dane[$index]->email;
-        $this->date = $dane[$index]->creation_date;
-        $this->last_date = $dane[$index]->modification_date;
+        $this->creation_date = $dane[$index]->creation_date;
+        $this->modification_date = $dane[$index]->modification_date;
         //$this->img = $dane[$index]->img;
         //$this->status=$dane[$index]->status;
         $this->ip_address=$dane[$index]->ip_address;
@@ -123,7 +123,7 @@ class User {
 
             $time = ''.(new DateTime()) -> format("Y-m-d H:i:s");
             
-            $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "1", "'.$time.'");');
+            $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("NULL, '.$this->id_user.' , "1", '.$time.');');
             //$db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "'.$time.'");');
             return $userId;
         }
@@ -134,8 +134,9 @@ class User {
     }
     function logout($db)
     {
-            $time = ''.(new DateTime()) -> format("Y-m-d H:i:s");
-            $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "2", "'.$time.'");');
+        $time = ''.(new DateTime()) -> format("Y-m-d H:i:s");
+        $db->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("NULL, '.$this->id_user.' , "2", '.$time.');');
+
     }
     function getLoggedInUser($db, $sessionId) {
         $userId = -1;
@@ -217,7 +218,7 @@ class User {
         $user->set_username($dane["username"]);
         $user->set_email($dane["email"]);
         $user->set_date($dane["creation_date"]);
-        $user->set_last_date($dane["modification_date"]);
+        $user->set_modification_date($dane["modification_date"]);
         $user->set_img($dane["id_img"]);
         $user->set_status($dane["id_status"]);
         $user->set_ip_address($dane["ip_address"]);
@@ -301,7 +302,7 @@ class User {
                 <section class="post-full-meta">';
 
         $now = (new DateTime()) -> format("Y-m-d H:i:s");
-        $tresc.='<time class="post-full-meta-date" datetime="'.$now.'">'.$this->get_date_format("d F Y", ''.$now).'</time>';
+        $tresc.='<time class="post-full-meta-date" datetime="'.$now.'">'.$this->get_creation_date_format("d F Y", ''.$now).'</time>';
 
         $tresc.='</section>';
 
@@ -338,7 +339,7 @@ class User {
         $this->set_username($dane["username"]);
         $this->set_email($dane["email"]);
         $this->set_status(1);
-        $this->set_date();
+        $this->set_creation_date();
         $this->set_img($dane["img"]);
 
 	if(md5($dane['stary_passwd']) == $this->get_passwd())
@@ -353,7 +354,7 @@ class User {
         
 //         $ob->answer("DELETE FROM `Session` WHERE `Session`.`id_user` = ".$this->id_user);
 
-        $ob->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("'.$userId.' '.$time.'", '.$userId.', "1", "'.$time.'");');
+        $ob->answer('INSERT INTO `Session` (`id_session`, `id_user`, `id_status`, `lastUpdate`) VALUES ("NULL", "'.$this->id_user.'", "1", "'.$time.'");');
 //         $ob->answer('INSERT INTO `Session` (`id_session`, `id_user`, `lastUpdate`) VALUES ("'.$this->id_user.' '.$time.'", '.$this->id_user.', "'.$time.'");');
     }
 
@@ -445,25 +446,46 @@ class User {
         return $this->email;
     }
 
-    // $date;
-    public function set_date($date='')
+    // $creation_date;
+    public function set_creation_date($creation_date='')
     {
-        if($date=='')
-            $this->date = (new DateTime()) -> format("Y-m-d H:i:s");
-            // $this->date = (new DateTime()) -> format("d F Y");
+        if($creation_date=='')
+            $this->creation_date = (new DateTime()) -> format("Y-m-d H:i:s");
+            // $this->creation_date = (new DateTime()) -> format("d F Y");
         else
-            $this->date = $date;
+            $this->creation_date = $creation_date;
     }
 
-    public function get_date()
+    public function get_creation_date()
     {
-        return $this->date;
+        return $this->creation_date;
     }
 
-    public function get_date_format($format="Y-m-d", $time='')
+    public function get_creation_date_format($format="Y-m-d", $time='')
     {
         if($time == '')
-            $time.=$this->date;
+            $time.=$this->creation_date;
+        return ((new DateTime("".$time))->format($format));
+    }
+    // $modification_date;
+    public function set_modification_date($modification_date='')
+    {
+        if($modification_date=='')
+            $this->modification_date = (new DateTime()) -> format("Y-m-d H:i:s");
+            // $this->modification_date = (new DateTime()) -> format("d F Y");
+        else
+            $this->modification_date = $modification_date;
+    }
+
+    public function get_modification_date()
+    {
+        return $this->modification_date;
+    }
+
+    public function get_modification_date_format($format="Y-m-d", $time='')
+    {
+        if($time == '')
+            $time.=$this->modification_date;
         return ((new DateTime("".$time))->format($format));
     }
 
@@ -487,7 +509,7 @@ class User {
             case 2: $this->status=User::STATUS_USER; break;
             case 3: $this->status=User::STATUS_MODERATOR; break;
             case 5: $this->status=User::STATUS_DELETED; break;
-            default: $this->status=User::STATUS_USER_PUBLIC;
+            default: $this->status=User::STATUS_PUBLIC;
         }
     }
     public function get_status()

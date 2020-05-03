@@ -29,9 +29,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Access` (
-  `id_access` int(10) UNSIGNED NOT NULL,
-  `description` varchar(100) NOT NULL
+  `id_access` int(2) UNSIGNED NOT NULL,
+  `description` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `Access`
+--
+
+INSERT INTO `Access` (`id_access`, `description`) VALUES 
+(1, 'N'),
+(2, 'W'),
+(3, 'R'),
+(4, 'RW');
 
 -- --------------------------------------------------------
 
@@ -41,7 +51,7 @@ CREATE TABLE `Access` (
 
 CREATE TABLE `Classification` (
   `id_classification` int(10) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -107,9 +117,9 @@ CREATE TABLE `Kurs` (
   `title` varchar(50) NOT NULL,
   `creation_date` datetime NOT NULL,
   `modification_date` datetime NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` varchar(230) NOT NULL,
   `id_img` int(10) UNSIGNED NOT NULL,
-  `id_access` int(10) UNSIGNED NOT NULL,
+  `id_access` int(2) UNSIGNED NOT NULL,
   `id_main_page` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -137,9 +147,9 @@ CREATE TABLE `Post` (
   `title` varchar(50) NOT NULL,
   `creation_date` datetime NOT NULL,
   `modification_date` datetime NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` varchar(230) NOT NULL,
   `id_img` int(10) UNSIGNED NOT NULL,
-  `id_access` int(10) UNSIGNED NOT NULL,
+  `id_access` int(2) UNSIGNED NOT NULL,
   `id_test` int(10) UNSIGNED DEFAULT NULL,
   `content` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -177,7 +187,7 @@ CREATE TABLE `Post_Comment` (
 CREATE TABLE `Session` (
   `id_session` int(10) UNSIGNED NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
-  `id_status` int(10) UNSIGNED NOT NULL,
+  `id_status` int(2) UNSIGNED NOT NULL,
   `ip_address` varchar(15) NOT NULL,
   `lastUpdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -189,8 +199,8 @@ CREATE TABLE `Session` (
 --
 
 CREATE TABLE `Status` (
-  `id_status` int(10) UNSIGNED NOT NULL,
-  `description` varchar(100) NOT NULL
+  `id_status` int(2) UNSIGNED NOT NULL,
+  `description` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -208,8 +218,8 @@ INSERT INTO `Status` (`id_status`, `description`) VALUES
 --
 
 CREATE TABLE `Status_user` (
-  `id_status_user` int(10) UNSIGNED NOT NULL,
-  `description` varchar(100) NOT NULL
+  `id_status_user` int(2) UNSIGNED NOT NULL,
+  `description` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -251,8 +261,8 @@ CREATE TABLE `User` (
   `creation_date` datetime NOT NULL,
   `modification_date` datetime NOT NULL,
   `id_img` int(10) UNSIGNED NOT NULL,
-  `id_status` int(10) UNSIGNED NOT NULL,
-  `passwd` varchar(60) NOT NULL
+  `id_status` int(2) UNSIGNED NOT NULL,
+  `passwd` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -387,7 +397,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT для таблиці `Access`
 --
 ALTER TABLE `Access`
-  MODIFY `id_access` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_access` int(2) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблиці `Comment`
@@ -435,13 +445,13 @@ ALTER TABLE `Session`
 -- AUTO_INCREMENT для таблиці `Status`
 --
 ALTER TABLE `Status`
-  MODIFY `id_status` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_status` int(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблиці `Status_user`
 --
 ALTER TABLE `Status_user`
-  MODIFY `id_status_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_status_user` int(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблиці `Test`

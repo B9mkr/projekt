@@ -3,18 +3,20 @@ class Post {
     // konstanty klasy:
     const ACCESS_NULL = 1;
     const ACCESS_WRITE = 2;
-    const ACCESS_READ = 4;
-    const ACCESS_ALL = 6;
+    const ACCESS_READ = 3;
+    const ACCESS_ALL = 4;
 
     // pola klasy:
     protected $id_post;
     protected $id_user;
     protected $title;
-    protected $datetime;
-    protected $tag;
-    protected $opis;
-    protected $post_full_image;
+    protected $creation_date;
+    protected $modification_date;
+//     protected $datetime;
+    protected $description;
+    protected $img;
     protected $access;
+    protected $test;
     protected $content;
     protected $user;
 
@@ -24,12 +26,14 @@ class Post {
 	    'img/security/security','img/software_engineering/software_engineer','img/android/android','img/processor/pr',
 	    'img/bd/bd','img/bouncers/bouncers');
 
-    // function __construct($datetime, $tag, $opis, $post_full_image, $content, $access){
+    // function __construct($datetime, $tag, $description, $img, $content, $access){
     function __construct()
     {
         $this->access = "".Post::ACCESS_ALL."".Post::ACCESS_ALL;
-        $this->datetime = (new DateTime()) -> format("Y-m-d");
+        $this->creation_date = (new DateTime()) -> format("Y-m-d H:i:s");
+        $this->modification_date = (new DateTime()) -> format("Y-m-d H:i:s");
         $this->id_post=1;
+        $this->test=NULL;
 
 // 	$this->back_fon_a=array("s","sp","m","g","c","se","i","a","p","b","bo");
 // 	$this->back_fon_b=array('standard','space','model','generator','code','security','software engineer','android','processor','bazy danych','bouncers');
@@ -40,11 +44,11 @@ class Post {
 
     // ----------------------------------------------------------------
     public function add_do_bazy(){
-        $answer = "INSERT INTO `Post` (`id_post`, `id_user`, `title`, `datetime`, `tag`, `opis`, `post_full_image`, `access`, `content`) VALUES ";
+        $answer = "INSERT INTO `Post` (`id_post`, `id_user`, `title`, `datetime`, `tag`, `description`, `img`, `access`, `content`) VALUES ";
         // if($this->id_post == 1)
-	        $answer .= "(NULL, '".$this->id_user."', '$this->title', '$this->datetime', '$this->tag', '$this->opis', '$this->post_full_image', '$this->access', '$this->content')";
+	        $answer .= "(NULL, '".$this->id_user."', '$this->title', '$this->datetime', '$this->tag', '$this->description', '$this->img', '$this->access', '$this->content')";
         // else
-        // $answer .= "(".$this->id_post.", '".$this->id_user."', '$this->title', '$this->datetime', '$this->tag', '$this->opis', '$this->post_full_image', '$this->access', '$this->content')";
+        // $answer .= "(".$this->id_post.", '".$this->id_user."', '$this->title', '$this->datetime', '$this->tag', '$this->description', '$this->img', '$this->access', '$this->content')";
         return $answer;
     }
 
@@ -53,10 +57,10 @@ class Post {
         $this->id_post = $dane[$index]->id_post;
         $this->id_user = $dane[$index]->id_user;
         $this->title = $dane[$index]->title;
-        $this->datetime = $dane[$index]->datetime;
+//         $this->datetime = $dane[$index]->datetime;
         $this->tag = $dane[$index]->tag;
-        $this->opis = $dane[$index]->opis;
-        $this->post_full_image = $dane[$index]->post_full_image;
+        $this->description = $dane[$index]->description;
+        $this->img = $dane[$index]->img;
         $this->access=$dane[$index]->access;
         $this->content=$dane[$index]->content;
         // $this-> = $dane[$index]->;
@@ -79,7 +83,7 @@ class Post {
             <tr>
                 <td>Zdjęcie zadniego fonu: </td>
                 <td>
-                    <select name="post_full_image">';
+                    <select name="img">';
 	foreach($this->back_fon_b  as $b)
 	{
 		$form.='<option value="'.$b.'">'.$b.'</option>';
@@ -93,7 +97,7 @@ class Post {
             </tr>
             <tr>
                 <td>Opis: </td>
-                <td><textarea name="opis" id="opis" type="text" placeholder="Opis" maxlength="255">Opis</textarea></td>
+                <td><textarea name="description" id="description" type="text" placeholder="Opis" maxlength="255">Opis</textarea></td>
             </tr>
             <tr>
                 <td>Tekst główny: </td>
@@ -122,9 +126,9 @@ class Post {
     {
         $args = array(
             'title' => FILTER_SANITIZE_MAGIC_QUOTES,
-            'post_full_image' => FILTER_SANITIZE_MAGIC_QUOTES,
+            'img' => FILTER_SANITIZE_MAGIC_QUOTES,
             'tag' => FILTER_SANITIZE_MAGIC_QUOTES,
-            'opis' => FILTER_SANITIZE_MAGIC_QUOTES,
+            'description' => FILTER_SANITIZE_MAGIC_QUOTES,
             'content' => FILTER_SANITIZE_MAGIC_QUOTES,
             'access' => FILTER_DEFAULT
         );
@@ -148,12 +152,12 @@ class Post {
         $this->title = $dane["title"];
 	
 	foreach($this->back_fon_b as $keyb => $b) {
-		if($b == $dane["post_full_image"])
-			$this->post_full_image = $this->back_fon_l[$keyb];
+		if($b == $dane["img"])
+			$this->img = $this->back_fon_l[$keyb];
 	}
 
         $this->tag = $dane["tag"];
-        $this->opis = $dane["opis"];
+        $this->description = $dane["description"];
         $this->content = $dane["content"];
         $this->id_user = $user->get_id_user();
         switch($dane["access"]) {
@@ -179,8 +183,8 @@ class Post {
             <tr>
                 <td>Zdjęcie zadniego fonu: </td>
                 <td>
-                    <select name="post_full_image">';
-                    $form.=$this->default_post_full_image();    
+                    <select name="img">';
+                    $form.=$this->default_img();    
                     $form.='</select>
                 </td>
             </tr>
@@ -190,7 +194,7 @@ class Post {
             </tr>
             <tr>
                 <td>Opis: </td>
-                <td><textarea name="opis" id="opis" type="text" placeholder="Opis" maxlength="255">'.$this->opis.'</textarea></td>
+                <td><textarea name="description" id="description" type="text" placeholder="Opis" maxlength="255">'.$this->description.'</textarea></td>
             </tr>
             <tr>
                 <td>Url do tekstu głównego: </td>
@@ -239,12 +243,12 @@ class Post {
         return $wyn;
     }
 
-    function default_post_full_image()
+    function default_img()
     {
         $wyn='';
         $i=0; 
 	foreach($this->back_fon_l as $keyl => $l) {
-		if($i==0 && $l == $this->post_full_image) {
+		if($i==0 && $l == $this->img) {
 			$i=1;
                 	$wyn.='<option value="'.$this->back_fon_b[$keyl].'">'.$this->back_fon_b[$keyl].'</option>';
 			foreach($this->back_fon_b as $keyb => $b) {
@@ -270,12 +274,12 @@ class Post {
         <article class="post-full">
         <header class="post-full-header">
             <section class="post-full-meta">
-                <time class="post-full-meta-date" datetime="'.$this->get_datetime().'">'.$this->get_date_format("d F Y").'</time>
+                <time class="post-full-meta-date" datetime="'.$this->get_modification_date().'">'.$this->get_modification_date_format("d F Y").'</time>
             </section>
             <h1 class="post-full-title">'.$this->get_title().'</h1>
         </header>';
         // <figure class="post-full-image">';
-        // $tresc.=create_img($post->get_post_full_image(), "png");
+        // $tresc.=create_img($post->get_img(), "png");
         // $tresc.='</figure>
         $tresc.='<section class="post-full-content"><div class="post-content">';
         $tresc .= $form;
@@ -288,9 +292,9 @@ class Post {
     {
         $args = array(
             'title' => FILTER_SANITIZE_MAGIC_QUOTES,
-            'post_full_image' => FILTER_SANITIZE_MAGIC_QUOTES,
+            'img' => FILTER_SANITIZE_MAGIC_QUOTES,
             'tag' => FILTER_SANITIZE_MAGIC_QUOTES,
-            'opis' => FILTER_SANITIZE_MAGIC_QUOTES,
+            'description' => FILTER_SANITIZE_MAGIC_QUOTES,
             'content' => FILTER_SANITIZE_MAGIC_QUOTES,
             'access' => FILTER_DEFAULT
         );
@@ -299,35 +303,35 @@ class Post {
         
         $this->title = $dane["title"];
         $this->tag = $dane["tag"];
-        $this->opis = $dane["opis"];
+        $this->description = $dane["description"];
         $this->content = $dane["content"];
         $this->id_user = $user->get_id_user();
 
 	foreach($this->back_fon_b as $keyb => $b){
-		if($b == $dane["post_full_image"])        		
-			$this->post_full_image = $this->back_fon_l[$keyb];
+		if($b == $dane["img"])        		
+			$this->img = $this->back_fon_l[$keyb];
 	}
 	
-//         switch($dane["post_full_image"])
+//         switch($dane["img"])
 //         {
 // 		foreach($this->back_fon_a as $key => $a){
-//             		case $a: $this->post_full_image = $this->back_fon_l[$key];   break;
+//             		case $a: $this->img = $this->back_fon_l[$key];   break;
 // 		}
-// 	    default:    $this->post_full_image = $this->back_fon_l[0];
+// 	    default:    $this->img = $this->back_fon_l[0];
 // 	}
 
-//         switch($dane["post_full_image"]) {
-//             case "g":	$this->post_full_image ='img/generator/intGen';   break;
-//             case "m":	$this->post_full_image ='img/model/model';   break;
-//             case "c":	$this->post_full_image ='img/code/baza_danych';   break;
-//             case "bo":	$this->post_full_image ='img/bouncers/bouncers';   break;
-//             case "p":	$this->post_full_image ='img/processor/pr';   break;
-//             case "se":	$this->post_full_image ='img/security/security';   break;
-//             case "i":	$this->post_full_image ='img/software_engineering/software_engineer';   break;
-//             case "a":	$this->post_full_image ='img/android/android';   break;
-//             case "sp":	$this->post_full_image ='img/space/space';   break;
-//             case "b":	$this->post_full_image ='img/bd/bd';   break;
-//             default:    $this->post_full_image ='img/standard/f';
+//         switch($dane["img"]) {
+//             case "g":	$this->img ='img/generator/intGen';   break;
+//             case "m":	$this->img ='img/model/model';   break;
+//             case "c":	$this->img ='img/code/baza_danych';   break;
+//             case "bo":	$this->img ='img/bouncers/bouncers';   break;
+//             case "p":	$this->img ='img/processor/pr';   break;
+//             case "se":	$this->img ='img/security/security';   break;
+//             case "i":	$this->img ='img/software_engineering/software_engineer';   break;
+//             case "a":	$this->img ='img/android/android';   break;
+//             case "sp":	$this->img ='img/space/space';   break;
+//             case "b":	$this->img ='img/bd/bd';   break;
+//             default:    $this->img ='img/standard/f';
 //         }
 
         switch($dane["access"])
@@ -339,7 +343,7 @@ class Post {
             default:    $this->access ='66';
         }
 
-        $db->answer('UPDATE `Post` SET `title` = "'.$this->title.'", `post_full_image` = "'.$this->post_full_image.'", `tag` = "'.$this->tag.'", `opis` = "'.$this->opis.'", `content` = "'.$this->content.'", `access` = "'.$this->access.'" WHERE `Post`.id_post = '.$this->id_post.';');
+        $db->answer('UPDATE `Post` SET `title` = "'.$this->title.'", `img` = "'.$this->img.'", `tag` = "'.$this->tag.'", `description` = "'.$this->description.'", `content` = "'.$this->content.'", `access` = "'.$this->access.'" WHERE `Post`.id_post = '.$this->id_post.';');
 
         $postId = $db->selectPost($this->content);
         
@@ -354,7 +358,7 @@ class Post {
     function get_access_for($kto, $ACCESS)
     {
         $access = str_split($ACCESS);
-        $ac;
+        $ac = $access[1];
         switch($kto)
         {
             case 'u':
@@ -380,7 +384,7 @@ class Post {
         <article class="post-full post tag-it">
         <header class="post-full-header">
             <section class="post-full-meta">
-                <time class="post-full-meta-date" datetime="'.$this->get_datetime().'">'.$this->get_date_format("d F Y").'</time>
+                <time class="post-full-meta-date" datetime="'.$this->get_modification_date().'">'.$this->get_modification_date_format("d F Y").'</time>
                 <span class="date-divider">/</span> <a href="?strona=glowna&tag='.$this->get_tag().'">'.$this->get_tag().'</a>
             </section>
             <h1 class="post-full-title">'.$this->get_title().'</h1>
@@ -389,7 +393,7 @@ class Post {
 //        $tresc.='<script id="MathJax-script" async src="JS/tex_mml_chtml.js"></script>';
         $tresc.='<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>';
         
-        $tresc.=$this->create_img($this->get_post_full_image(), "jpg");
+        $tresc.=$this->create_img($this->get_img(), "jpg");
         
         $tresc.='</figure>
         <section class="post-full-content"><div class="post-content">';
@@ -431,7 +435,7 @@ class Post {
     function get_tresc_g($user){
         $tresc = '
                 <article class="post-card post">
-                    <a class="post-card-image-link" href="?strona=post&this_post='.$this->get_id_post().'">'.$this->create_img($this->get_post_full_image(), "jpg").'</a>
+                    <a class="post-card-image-link" href="?strona=post&this_post='.$this->get_id_post().'">'.$this->create_img($this->get_img(), "jpg").'</a>
                     <div class="post-card-content">
                         <a class="post-card-content-link" href="?strona=post&this_post='.$this->get_id_post().'">
                             <header class="post-card-header">
@@ -439,7 +443,7 @@ class Post {
                                 <h2 class="post-card-title">'.$this->get_title().'</h2>
                             </header>
                             <section class="post-card-excerpt">
-                                <p>'.$this->get_opis().'</p>
+                                <p>'.$this->get_description().'</p>
                             </section>
                         </a>
                         <footer class="post-card-meta">
@@ -488,20 +492,26 @@ class Post {
     public function set_title($title){
         $this->title = $title;
     }
-    public function set_datetime($datetime=''){
-        if($datetime == '')
-            $this->datetime = (new DateTime()) -> format("Y-m-d");
+    public function set_creation_date($date=''){
+        if($date == '')
+            $this->creation_date = (new DateTime()) -> format("Y-m-d");
         else
-            $this->datetime = $datetime;
+            $this->creation_date = $date;
+    }
+    public function set_modification_date($date=''){
+        if($date == '')
+            $this->modification_date = (new DateTime()) -> format("Y-m-d");
+        else
+            $this->modification_date = $date;
     }
     public function set_tag($tag){
         $this->tag = $tag;
     }
-    public function set_opis($opis){
-        $this->opis = $opis;
+    public function set_description($description){
+        $this->description = $description;
     }
-    public function set_post_full_image($post_full_image){
-        $this->post_full_image = $post_full_image;
+    public function set_img($img){
+        $this->img = $img;
     }
     public function set_access($liczba_access)
     {
@@ -544,17 +554,20 @@ class Post {
     public function get_title(){
         return $this->title;
     }
-    public function get_datetime(){
-        return $this->datetime;
+    public function get_creation_date(){
+        return $this->creation_date;
+    }
+    public function get_modification_date(){
+        return $this->modification_date;
     }
     public function get_tag(){
         return $this->tag;
     }
-    public function get_opis(){
-        return $this->opis;
+    public function get_description(){
+        return $this->description;
     }
-    public function get_post_full_image(){
-        return $this->post_full_image;
+    public function get_img(){
+        return $this->img;
     }
     public function get_access(){
         return $this->access;
@@ -566,9 +579,13 @@ class Post {
         return $this->user;
     }
 
-    public function get_date_format($format="Y-m-d")
+    public function get_creation_date_format($format="Y-m-d")
     {
-        return ((new DateTime("".$this->datetime))->format($format));
+        return ((new DateTime("".$this->creation_date))->format($format));
+    }
+    public function get_modification_date_format($format="Y-m-d")
+    {
+        return ((new DateTime("".$this->modification_date))->format($format));
     }
 
     function help_access($liczba){
