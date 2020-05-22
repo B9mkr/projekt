@@ -5,7 +5,9 @@ class Strona
     private $title="Projekt";
     protected $zawartosc;
     // protected $slowa_kluczowe="narzędzia internetowe, php, formularz";
-    protected $css=["css/st.css"];
+    protected $css=[
+	    "css/st.css",
+	    "css/light.css"];
     protected $header;
 
     protected $db;
