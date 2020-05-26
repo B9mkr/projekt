@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="ru" data-id="3">
+  <head>
+    <title> Kurs </title>
+    <link rel="stylesheet" href="main/ranobe.css" type="text/css" />
+  </head>
+  <body>
+    <!-- SEARCH -->
+    <div class="search hidden">
+      <div class="search__container">
+        <div class="search__inner autocomplete">
+          <div class="search__input-wrap">
+            <div class="search__icon search__icon_left">
+              <i class="fa fa-search"></i>
+            </div>
+            <input type="text" class="search__input form__input autocomplete__input">
+            <div class="search__icon search__icon_right search__icon_close" data-search-toggle>
+              <svg>
+                <use xlink:href="#icon-close"></use>
+              </svg>
+            </div>
+            <div class="search__icon search__icon_right search__icon_loader">
+              <div class="loader-circle loader-circle_small"></div>
+            </div>
+          </div>
+          <div class="search__types">
+            <div class="search__type" data-term="Ранобе" data-type="manga" data-url="https://ranobelib.me/search">Ранобе</div>
+            <div class="search__type" data-term="Автора" data-type="author" data-url="https://ranobelib.me/people/search">Автор</div>
+            <div class="search__type" data-term="Переводчика" data-type="team" data-url="https://ranobelib.me/team/search">Переводчик</div>
+            <div class="search__type" data-term="Пользователя" data-type="user" data-url="https://ranobelib.me/users/search">Пользователь</div>
+          </div>
+          <div class="search__suggestions-wrap">
+            <div class="search__suggestions autocomplete__suggestions">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ SEARCH -->
+
+    <!-- Website Menu -->
+    <div class="header">
+      <div class="header__inner">
+        <div class="header__item header__left">
+          <a href="/" class="header__logo">
+          <img src="https://ranobelib.me/images/ranobe.png?435" alt="RanobeLib">
+          </a>
+          <div class="header__other-sites dropdown">
+            <div class="header__other-sites-icon" data-dropdown>
+              <i class="fa fa-caret-square-o-down"></i>
+            </div>
+            <div class="menu-template">
+              <div class="menu">
+                <a
+                  class="menu__item"
+                  href="https://mangalib.me"
+                  title="MangaLib"
+                  >MangaLib</a>
+                <a
+                  class="menu__item"
+                  href="https://hentailib.me"
+                  title="HentaiLib"
+                  >HentaiLib</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__item header__menu">
+          <div class="header-menu">
+            <div class="header-menu__item dropdown">
+              <span data-dropdown><i class="fa fa-bars"></i> Каталог <i class="fa fa-caret-down"></i></span>
+              <div class="menu-template">
+                <div class="menu header-dropdown">
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/manga-list?types[]=10"
+                    title="Каталог Японской"
+                    >Японской</a>
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/manga-list?types[]=11"
+                    title="Каталог Корейской"
+                    >Корейской</a>
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/manga-list?types[]=12"
+                    title="Каталог Китайской"
+                    >Китайской</a>
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/manga-list?types[]=13"
+                    title="Каталог Английской"
+                    >Английской</a>
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/manga-list?types[]=14"
+                    title="Каталог Авторской"
+                    >Авторской</a>
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/manga-list?types[]=15"
+                    title="Каталог фанфиков"
+                    >Фанфиков</a>
+                  <div class="menu__divider"></div>
+                  <a href="https://ranobelib.me/manga-list" class="menu__item">Весь</a>
+                  <a class="menu__item" href="https://ranobelib.me/random">Случайный тайтл</a>
+                </div>
+              </div>
+            </div>
+            <div class="header-menu__item" data-search-toggle>
+              <span id="search-link" title="Быстрый поиск"><i class="fa fa-search"></i> Поиск</span>
+            </div>
+            <div class="header-menu__item">
+              <a
+                href="https://ranobelib.me/forum"
+                title="Форум"
+                ><i class="fa fa-comments-o"></i> Форум</a>
+            </div>
+            <div class="header-menu__item">
+              <a
+                href="https://ranobelib.me/faq"
+                title="Ответы на часто задаваемые вопросы"
+                ><i class="fa fa-question-circle"></i> FAQ</a>
+            </div>
+            <div class="header-menu__item dropdown header-button">
+              <div class="header-button__icon" data-dropdown>
+                <i class="fa fa-ellipsis-h"></i>
+              </div>
+              <div class="menu-template">
+                <div class="menu header-dropdown">
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/news"
+                    title="Новости"
+                    ><i class="fa fa-newspaper-o fa-fw"></i> Новости</a>
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/contact-us/"
+                    title="Связаться с нами"
+                    ><i class="fa fa-envelope-o fa-fw"></i> Контакты</a>
+                  <a
+                    class="menu__item"
+                    href="https://ranobelib.me/random"
+                    title="Случайная манга"
+                    ><i class="fa fa-random fa-fw"></i> Рандом</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__item header-right-menu">
+          <div class="header-right-menu__item dropdown header-button">
+            <div
+              class="header-button__icon"
+              data-dropdown
+              data-tippy-placement="bottom-end"
+              >
+              <i class="fa fa-pencil"></i>
+            </div>
+            <div class="menu-template">
+              <div class="menu header-dropdown">
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/manga/create"
+                  ><i class="fa fa-plus fa-fw"></i> Добавить мангу</a>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/team/create"
+                  ><i class="fa fa-users fa-fw"></i> Добавить команду</a>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/people/create"
+                  ><i class="fa fa-book fa-fw"></i> Добавить автора</a>
+                <div class="divider menu__divider"></div>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/user/content"
+                  ><i class="fa fa-list-alt fa-fw"></i> Мои добавления <span class="menu__label">0</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="header-right-menu__item dropdown header-button">
+            <div
+              class="header-button__icon"
+              data-dropdown
+              data-tippy-placement="bottom-end"
+              data-tippy-interactive="true"
+              data-open-notifications
+              >
+              <i class="fa fa-bell"></i>
+              <div class="notify__count notify__count_bell" data-counter="6">6</div>
+            </div>
+            <div class="menu-template">
+              <div class="menu notify header-dropdown" >
+                <div id="notifications"></div>
+              </div>
+            </div>
+          </div>
+          <a class="header-right-menu__item header-button" href="https://ranobelib.me/user/197578">
+            <div class="header-button__icon">
+              <i class="fa fa-bookmark-o"></i>
+            </div>
+          </a>
+          <div class="header-right-menu__item dropdown">
+            <img src="https://ranobelib.me/uploads/users/197578/8UPsznPCjB.jpg" class="header-right-menu__avatar" data-dropdown data-tippy-placement="bottom-end" />
+            <div class="menu-template">
+              <div class="menu header-dropdown">
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/user/197578"
+                  ><i class="fa fa-user fa-fw"></i> Профиль пользователя</a>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/user/197578"
+                  ><i class="fa fa-bookmark fa-fw"></i> Мои закладки</a>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/notification"
+                  ><i class="fa fa-bell fa-fw"></i> Уведомления</a>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/user/197578/comment"
+                  ><i class="fa fa-comment fa-fw"></i> Мои комментарии</a>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/messages"
+                  ><i class="fa fa-envelope fa-fw"></i> Личные сообщения</a>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/user/197578/following"
+                  ><i class="fa fa-users fa-fw"></i> Список друзей</a>
+                <div class="divider menu__divider"></div>
+                <a
+                  class="menu__item"
+                  href="https://ranobelib.me/user/edit?197578"
+                  ><i class="fa fa-cog fa-fw"></i> Настройки</a>
+                <a
+                  class="menu__item text-danger"
+                  href="https://ranobelib.me/logout"
+                  id="logout-button"
+                  ><i class="fa fa-sign-out fa-fw"></i> Выход</a>
+                <div class="menu__divider"></div>
+                <div class="menu__subheader text-center">Мы в соц. сетях</div>
+                <div class="buttons-stretch px-10">
+                  <a href="https://vk.com/mangalib" class="button button_md" data-social="vk" target="_blank">
+                  <i class="fa fa-vk"></i>
+                  </a>
+                  <a href="https://discord.gg/6Kaw3hN" class="button button_md" data-social="discord" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="currentColor">
+                      <path d="m3.58 21.196h14.259l-.681-2.205 1.629 1.398 1.493 1.338 2.72 2.273v-21.525c-.068-1.338-1.22-2.475-2.648-2.475l-16.767.003c-1.427 0-2.585 1.139-2.585 2.477v16.24c0 1.411 1.156 2.476 2.58 2.476zm10.548-15.513-.033.012.012-.012zm-7.631 1.269c1.833-1.334 3.532-1.27 3.532-1.27l.137.135c-2.243.535-3.26 1.537-3.26 1.537s.272-.133.747-.336c3.021-1.188 6.32-1.102 9.374.402 0 0-1.019-.937-3.124-1.537l.186-.183c.291.001 1.831.055 3.479 1.26 0 0 1.844 3.15 1.844 7.02-.061-.074-1.144 1.666-3.931 1.726 0 0-.472-.534-.808-1 1.63-.468 2.24-1.404 2.24-1.404-.535.337-1.023.537-1.419.737-.609.268-1.219.4-1.828.535-2.884.468-4.503-.315-6.033-.936l-.523-.266s.609.936 2.174 1.404c-.411.469-.818 1.002-.818 1.002-2.786-.066-3.802-1.806-3.802-1.806 0-3.876 1.833-7.02 1.833-7.02z"/>
+                      <path d="m14.308 12.771c.711 0 1.29-.6 1.29-1.34 0-.735-.576-1.335-1.29-1.335v.003c-.708 0-1.288.598-1.29 1.338 0 .734.579 1.334 1.29 1.334z"/>
+                      <path d="m9.69 12.771c.711 0 1.29-.6 1.29-1.34 0-.735-.575-1.335-1.286-1.335l-.004.003c-.711 0-1.29.598-1.29 1.338 0 .734.579 1.334 1.29 1.334z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--/ Website Menu -->
+    <div class="page" id="main-page" >
+      <div class="page__inner">
+        <div class="manga-bg" style="background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.8)), url(https://ranobelib.me/uploads/cover/pererozhdenie-programmista-v-mire-magii/background/wAZZIf66gq.jpg)">
+          <div class="manga-bg__head container container_responsive">
+            <h1 class="manga-bg__title"> Перерождение Программиста в Мире Магии (Новелла) </h1>
+            <h4 class="manga-bg__subtitle">Rebirth of the Developer in the World of Magic (Novel) </h4>
+          </div>
+        </div>
+        <div class="container container_responsive container_offset manga manga_has-bg">
+          <div class="page__wrapper page__wrapper_left">
+            <section class="section paper clearfix manga__section-info" itemscope itemtype="http://schema.org/CreativeWork">
+              <meta itemprop="name" content="Перерождение Программиста в Мире Магии (Новелла)" />
+              <meta itemprop="alternativeHeadline" content="Rebirth of the Developer in the World of Magic (Novel)" />
+              <meta itemprop="url" content="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii" />
+              <meta itemprop="description" content="Гениальный программист из 22 века умирает в мире технологий и перерождается... в средневековом мире. Но к счастью, в новом мире есть магия! Теперь главный герой – Леонард Аркантель встает на пути становления величайшим магом. Но не все происходит так гладко, как хотелось бы. Повседневную спокойную жизнь Леонарда нарушают заговорщики, жадные до денег и власти. Каким будет дальнейший путь Леонарда?&amp;nbsp;Какой&amp;nbsp;будет его месть обидчикам?&amp;nbsp;======================Если вам понравился проект и вы хотите поддержать, то пожалуйста голосуйте за новеллу и вступайте в группу ВК, в которой информация о проекте появляется в первую очередь:&amp;nbsp;https://vk.com/rebirthofthedeveloper" />
+              <div class="section__body clearfix">
+                <!--  -->
+                <div class="manga__image">
+                  <img src="https://ranobelib.me/uploads/cover/pererozhdenie-programmista-v-mire-magii/cover/cover_250x350.jpg?1590318323" alt="Rebirth of the Developer in the World of Magic (Novel)" class="manga__cover">
+                  <div class="manga__actions">
+                    <a
+                      href="https://ranobelib.me/manga-rss/pererozhdenie-programmista-v-mire-magii"
+                      class="manga__action"
+                      data-tippy-content="RSS подписка"
+                      >
+                    <i class="fa fa-rss"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="manga__action"
+                      data-tippy-content="Сообщить об ошибке"
+                      tabindex="-1" data-open-modal="#error-message"
+                      >
+                    <i class="fa fa-exclamation-triangle"></i>
+                    </a>
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/add-chapter"
+                      class="manga__action"
+                      data-tippy-content="Добавить одну главу"
+                      >
+                    <i class="fa fa-plus-square"></i>
+                    </a>
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/edit"
+                      class="manga__action"
+                      data-tippy-content="Редактировать мангу"
+                      >
+                      <svg>
+                        <use xlink:href="#icon-edit"></use>
+                      </svg>
+                    </a>
+                  </div>
+                  <div class="manga__buttons">
+                    <a href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c12?showNext=1" class="button button_primary">Продолжить</a>
+                    <script>
+                      window.__BOOKMARK_FOLDERS__ = [{"id":1,"name":"Читаю","public":true},{"id":2,"name":"В планах","public":true},{"id":3,"name":"Брошено","public":true},{"id":4,"name":"Прочитано","public":true},{"id":5,"name":"Любимые","public":true}];
+                    </script>
+                    <button class="button button_label button_primary"
+                      id="button-change-status"
+                      data-id="30142"
+                      data-slug="pererozhdenie-programmista-v-mire-magii"
+                      data-status="4"
+                      >
+                    <i class="fa fa-folder icon"></i>
+                    <span class="flex align-items_center">
+                    <span data-text class="text-truncate">Прочитано</span>
+                    <i class="fa fa-angle-down fa-fw"></i>
+                    </span>
+                    </button>
+                  </div>
+                </div>
+                <div class="manga__body">
+                  <div class="manga-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                    <div class="manga-rating__top">
+                      <div class="manga-rating__stars rating"  data-id="30142" >
+
+                        <span class="rating__star rating__current" data-score="5">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			    <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path>
+                          </svg>
+                        </span>
+
+                        <span class="rating__star " data-score="1">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			    <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path>
+                          </svg>
+                        </span>
+
+                      </div>
+                      <div class="manga-rating__value">5</div>
+                    </div>
+
+                    <div class="manga-rating__votes">голосов: 5</div>
+                  </div>
+                  <div class="info-list manga-info">
+                    <div class="info-list__row">
+                      <strong>Тип</strong>
+                      <span>Авторский</span>
+                    </div>
+                    <div class="info-list__row">
+                      <strong>Автор</strong>
+                      <a
+                        href="https://ranobelib.me/people/author/scarredlion"
+                        class="link-default"
+                        >ScarredLion</a>
+                    </div>
+                    <div class="info-list__row">
+                      <strong>Перевод</strong>
+                      <span class="m-label m-label_info">продолжается</span>
+                    </div>
+                    <div class="info-list__row">
+                      <strong>Просмотров</strong><span>764</span>
+                    </div>
+                    <div class="info-list__row">
+                      <strong>Дата релиза</strong>
+                      <span>2020</span>
+                    </div>
+                    <div class="info-list__row">
+                      <strong>Формат выпуска</strong>
+                      <a
+                        href="https://ranobelib.me/manga-list?format[]=6"
+                        class="link-default"
+                        >Веб</a>
+                    </div>
+                    <div class="info-list__row">
+                      <strong>Жанры</strong>
+                      <a
+                        href="https://ranobelib.me/manga-list?includeGenres[]=39"
+                        class="link-default"
+                        >героическое фэнтези</a>
+                      <a
+                        href="https://ranobelib.me/manga-list?includeGenres[]=79"
+                        class="link-default"
+                        >исекай</a>
+                      <a
+                        href="https://ranobelib.me/manga-list?includeGenres[]=54"
+                        class="link-default"
+                        >приключения</a>
+                      <a
+                        href="https://ranobelib.me/manga-list?includeGenres[]=61"
+                        class="link-default"
+                        >сёнэн</a>
+                      <a
+                        href="https://ranobelib.me/manga-list?includeGenres[]=69"
+                        class="link-default"
+                        >фэнтези</a>
+                    </div>
+                  </div>
+                  <div class="info-desc info-desc_short manga__desc">
+                    <div class="info-desc__title">Описание</div>
+                    <div class="info-desc__content">Гениальный программист из 22 века умирает в мире технологий и перерождается... в средневековом мире. Но к счастью, в новом мире есть магия! Теперь главный герой – Леонард Аркантель встает на пути становления величайшим магом. Но не все происходит так гладко, как хотелось бы. Повседневную спокойную жизнь Леонарда нарушают заговорщики, жадные до денег и власти. Каким будет дальнейший путь Леонарда?&nbsp;Какой&nbsp;будет его месть обидчикам?&nbsp;<br>======================<br>Если вам понравился проект и вы хотите поддержать, то пожалуйста голосуйте за новеллу и вступайте в группу ВК, в которой информация о проекте появляется в первую очередь:&nbsp;<b>https://vk.com/rebirthofthedeveloper</b><br></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="aside aside_right">
+            <div class="aside__panel paper">
+              <h3 class="aside__title">
+                <span class="aside__title-inner">В закладках у людей (67)</span>
+              </h3>
+              <div class="aside__content aside__content_group aside-users">
+                <a href="https://ranobelib.me/user/43044" class="aside-user" title="(ಠ_ಠ)">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/43044/hmbr9u33YS.jpg" alt="(ಠ_ಠ)">
+                </a>
+                <a href="https://ranobelib.me/user/51760" class="aside-user" title="狂人">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/51760/kNwZka82BR.jpg" alt="狂人">
+                </a>
+                <a href="https://ranobelib.me/user/72111" class="aside-user" title="nfhfc1998">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/placeholder.png" alt="nfhfc1998">
+                </a>
+                <a href="https://ranobelib.me/user/79192" class="aside-user" title="konstantyn-savenkov">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/placeholder.png" alt="konstantyn-savenkov">
+                </a>
+                <a href="https://ranobelib.me/user/95313" class="aside-user" title="U͖n͉D̪e͕a͇d͎">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/95313/9SyozwrmZu.jpg" alt="U͖n͉D̪e͕a͇d͎">
+                </a>
+                <a href="https://ranobelib.me/user/114495" class="aside-user" title="marina08130">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/114495/J2BkeXMx1G.jpg" alt="marina08130">
+                </a>
+                <a href="https://ranobelib.me/user/129579" class="aside-user" title="Alfaim">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/129579/SXnUJoh99K.jpg" alt="Alfaim">
+                </a>
+                <a href="https://ranobelib.me/user/130301" class="aside-user" title="Einhorn">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/130301/nDnXkAwfxy.jpg" alt="Einhorn">
+                </a>
+                <a href="https://ranobelib.me/user/135132" class="aside-user" title="Reader2749">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/135132/sVe4s34KQz.jpg" alt="Reader2749">
+                </a>
+                <a href="https://ranobelib.me/user/141603" class="aside-user" title="SageG">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/141603/RWCh2W9uq9.jpg" alt="SageG">
+                </a>
+                <a href="https://ranobelib.me/user/197578" class="aside-user" title="Karken">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/197578/8UPsznPCjB.jpg" alt="Karken">
+                </a>
+                <a href="https://ranobelib.me/user/214551" class="aside-user" title="А улитка анус рвал!">
+                <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89x8AAuEB74Y0o2cAAAAASUVORK5CYII=" data-src="https://ranobelib.me/uploads/users/214551/w1UQZnMKPI.jpg" alt="А улитка анус рвал!">
+                </a>
+              </div>
+              <div class="aside__content aside__content_group">
+                <button class="button button_block" id="users-bookmarks-show" tabindex="-1" data-open-modal="#users-bookmarks-modal">Показать всех</button>
+              </div>
+            </div>
+
+            <div class="aside__panel paper">
+              <h3 class="aside__title"><span class="aside__title-inner">Вам может понравиться</span></h3>
+              <a href="https://ranobelib.me/my-status-as-an-assassin-obviously-exceeds-the-heros" title="Ansatsusha de Aru Ore no Status ga Yuusha yori mo Akiraka ni Tsuyoi no da ga | Но я убийца, а не герой! (Новелла)" class="manga-list-item list-item">
+                <img class="manga-list-item__cover lazyload shadow-sm" src="https://ranobelib.me/uploads/no-image.png" data-src="https://ranobelib.me/uploads/cover/my-status-as-an-assassin-obviously-exceeds-the-heros/cover/cover_thumb.jpg" alt="Ansatsusha de Aru Ore no Status ga Yuusha yori mo Akiraka ni Tsuyoi no da ga" title="Ansatsusha de Aru Ore no Status ga Yuusha yori mo Akiraka ni Tsuyoi no da ga">
+                <div class="manga-list-item__body">
+                  <h3 class="manga-list-item__title">Ansatsusha de Aru Ore no Status ga Yuusha yori mo Akiraka ni Tsuyoi no da ga</h3>
+                  <h4 class="manga-list-item__subtitle">Но я убийца, а не герой! (Новелла)</h4>
+                </div>
+              </a>
+            </div>
+            
+          </div>
+
+          <div class="page__wrapper page__wrapper_left">
+            <section class="section paper">
+              <script>
+                window.__MANGA__ = {"id":30142,"name":"Rebirth of the Developer in the World of Magic (Novel)","slug":"pererozhdenie-programmista-v-mire-magii"};
+              </script>
+              <div class="section__header">
+                <strong>Список глав</strong>
+              </div>
+              <div class="chapters-list" data-manga-name="Rebirth of the Developer in the World of Magic (Novel)" data-manga-id="30142" data-media-slug="pererozhdenie-programmista-v-mire-magii">
+                <div
+                  class="chapter-item"
+                  data-id="625933"
+                  data-index="12"
+                  data-volume="1"
+                  data-number="12"
+                  data-is-read="1"
+                  id="vol-1"               >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Прорыв"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c12">Том
+                    1. Глава 12
+                    <span>- Прорыв</span>          </a>
+                    <span class="chapter-item__new"></span>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    23.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/625933"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="chapter-item"
+                  data-id="621349"
+                  data-index="11"
+                  data-volume="1"
+                  data-number="11"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Деревня в лесу"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c11">Том
+                    1. Глава 11
+                    <span>- Деревня в лесу</span>          </a>
+                    <span class="chapter-item__new"></span>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    20.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/621349"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="620175"
+                  data-index="10"
+                  data-volume="1"
+                  data-number="10"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Исход битвы"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c10">Том
+                    1. Глава 10
+                    <span>- Исход битвы</span>          </a>
+                    <span class="chapter-item__new"></span>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    19.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/620175"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="619130"
+                  data-index="9"
+                  data-volume="1"
+                  data-number="9"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Битва за выживание"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c9">Том
+                    1. Глава 9
+                    <span>- Битва за выживание</span>          </a>
+                    <span class="chapter-item__new"></span>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    18.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/619130"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="616792"
+                  data-index="8"
+                  data-volume="1"
+                  data-number="8"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Бескрайний лес"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c8">Том
+                    1. Глава 8
+                    <span>- Бескрайний лес</span>          </a>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    17.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/616792"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="615931"
+                  data-index="7"
+                  data-volume="1"
+                  data-number="7"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Побег"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c7">Том
+                    1. Глава 7
+                    <span>- Побег</span>          </a>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    16.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/615931"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="614469"
+                  data-index="6"
+                  data-volume="1"
+                  data-number="6"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Королевский бал магов (3)"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c6">Том
+                    1. Глава 6
+                    <span>- Королевский бал магов (3)</span>          </a>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    15.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/614469"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="613214"
+                  data-index="5"
+                  data-volume="1"
+                  data-number="5"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Королевский бал магов (2)"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c5">Том
+                    1. Глава 5
+                    <span>- Королевский бал магов (2)</span>          </a>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    14.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/613214"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="607233"
+                  data-index="4"
+                  data-volume="1"
+                  data-number="4"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Королевский бал магов (1)"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c4">Том
+                    1. Глава 4
+                    <span>- Королевский бал магов (1)</span>          </a>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    09.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/607233"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="596966"
+                  data-index="3"
+                  data-volume="1"
+                  data-number="3"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Отправление в Вайтфолл"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c3">Том
+                    1. Глава 3
+                    <span>- Отправление в Вайтфолл</span>          </a>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    02.05.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/596966"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="586795"
+                  data-index="2"
+                  data-volume="1"
+                  data-number="2"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Магия"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c2">Том
+                    1. Глава 2
+                    <span>- Магия</span>          </a>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    25.04.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/586795"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="chapter-item"
+                  data-id="586794"
+                  data-index="1"
+                  data-volume="1"
+                  data-number="1"
+                  data-is-read="1"
+                  >
+                  <div class="chapter-item__icon chapter-item__viewed tooltip" data-place="right">
+                    <span class="chapter-item__icon-read"></span>
+                  </div>
+                  <div class="chapter-item__name" >
+                    <a class="link-default" title="Перерождение"
+                      href="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii/v1/c1">Том
+                    1. Глава 1
+                    <span>- Перерождение</span>          </a>
+                  </div>
+                  <div class="chapter-item__added">
+                    <a class="link-default" href="https://ranobelib.me/user/315506">
+                    <i class="fa fa-user-o"></i> <span>ScarredLion</span>
+                    </a>
+                  </div>
+                  <div class="chapter-item__date">
+                    25.04.2020
+                  </div>
+                  <div class="chapter-item__actions">
+                    <a
+                      href="https://ranobelib.me/manga/pererozhdenie-programmista-v-mire-magii/chapter/586794"
+                      class="chapter-item__icon chapter-item__icon_edit link-default tooltip"
+                      data-place="left"
+                      aria-label="Редактировать главу"
+                      >
+                    <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+            <div id="comments" data-post-id="30142" data-type="manga"></div>
+          </div>
+        </div>
+      </div>
+
+       <footer class="footer container">
+        <div class="footer__inner paper">
+          <div class="footer__theme-toggler">
+            <h3>Тема сайта</h3>
+            <span class="footer-t-previews">
+              <div class="footer-t-preview tooltip" data-toggle-theme="light" data-place="top" aria-label="Светлая">A</div>
+              <div class="footer-t-preview tooltip" data-toggle-theme="dark" data-place="top" aria-label="Темная">A</div>
+            </span>
+          </div>
+          <div class="footer__menu clearfix">
+            <div class="footer__copyright">
+              <span>©&nbsp;2020</span>
+              <a rel="nofollow" href="https://ranobelib.me/">RanobeLib</a>
+            </div>
+            <ul class="footer__nav clearfix">
+              <li>
+                <a class="footer__nav-link" rel="nofollow" target="_blank" href="https://ranobelib.me/contact-us" title="Обратная связь">Обратная связь</a>
+              </li>
+              <li>
+                <a class="footer__nav-link" href="/manga-list" target="_blank" title="Список манги">Каталог ранобэ</a>
+              </li>
+              <li>
+                <a class="footer__nav-link" href="https://ranobelib.me/news" target="_blank" title="Новости">Новости</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <div class="page-modals" tabindex="-1">
+      <div class="modal" id="report-comment">
+        <div class="modal__inner">
+          <div class="modal__content" data-size="small">
+            <div class="modal__header">
+              <h3 class="modal__title">Жалоба на комментарий</h3>
+              <div class="modal__close" data-close-modal>
+                <svg class="modal__close-icon">
+                  <use xlink:href="#icon-close"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="modal__body">
+              <form action="https://ranobelib.me/api/comments/report" method="POST" id="report-comment-form">
+                <input type="hidden" name="_token" value="hGpVvBCzWpKO5yCB7iw6BIJ3OcOHpWeoLO0V5D6B">
+                <input type="hidden" name="comment_id" id="report-comment-id">
+                <div class="control-group form__field">
+                  <label class="control">
+                  <input type="radio" class="control__input" name="reason_id" value="1">
+                  <span class="control__indicator control__indicator_radio control__indicator_sm"></span>
+                  <span class="control__text">Спойлер</span>
+                  </label>
+                  <label class="control">
+                  <input type="radio" class="control__input" name="reason_id" value="2">
+                  <span class="control__indicator control__indicator_radio control__indicator_sm"></span>
+                  <span class="control__text">Нецензурная лексика</span>
+                  </label>
+                  <label class="control">
+                  <input type="radio" class="control__input" name="reason_id" value="3">
+                  <span class="control__indicator control__indicator_radio control__indicator_sm"></span>
+                  <span class="control__text">Оскорбление пользователей</span>
+                  </label>
+                  <label class="control">
+                  <input type="radio" class="control__input" name="reason_id" value="4">
+                  <span class="control__indicator control__indicator_radio control__indicator_sm"></span>
+                  <span class="control__text">Комментарий без смысла</span>
+                  </label>
+                  <label class="control">
+                  <input type="radio" class="control__input" name="reason_id" value="5">
+                  <span class="control__indicator control__indicator_radio control__indicator_sm"></span>
+                  <span class="control__text">Спам</span>
+                  </label>
+                </div>
+                <div class="form__footer">
+                  <button type="submit" class="button button_block button_primary">Отправить</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="error-message">
+        <div class="modal__backdrop"></div>
+        <div class="modal__inner">
+          <div class="modal__content">
+            <div class="modal__header">
+              <h4 class="modal__title">Сообщение об ошибке</h4>
+              <div class="modal__close" data-close-modal>
+                <svg class="modal__close-icon">
+                  <use xlink:href="#icon-close"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="modal__body">
+              <form method="POST" action="https://ranobelib.me/send/report-manga">
+                <div class="form__field">
+                  <label for="message-err" class="form__label">Ваше сообщение</label>
+                  <input type="hidden" name="url" value="https://ranobelib.me/pererozhdenie-programmista-v-mire-magii">
+                  <input type="hidden" name="_token" value="hGpVvBCzWpKO5yCB7iw6BIJ3OcOHpWeoLO0V5D6B">
+                  <textarea name="subject" id="message-err" rows="4" class="form__textarea" required></textarea>
+                </div>
+                <div class="form__field">
+                  <button type="submit" class="button button_orange">Отправить</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="users-bookmarks-modal" data-animation="fade-up">
+        <div class="modal__backdrop"></div>
+        <div class="modal__inner">
+          <div class="modal__content" data-size="large">
+            <div class="modal__header modal__header_sticky">
+              <h3 class="modal__title">В закладках у людей</h3>
+              <div class="modal__close" data-close-modal>
+                <svg class="modal__close-icon">
+                  <use xlink:href="#icon-close"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="modal__body">
+              <div class="users-bookmarks-container" data-id="30142">
+                <div class="loader-wrapper">
+                  <div class="loader-circle"></div>
+                </div>
+              </div>
+              <button class="button button_block users-bookmarks-more hidden" id="users-bookmarks-next">Показать еще</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

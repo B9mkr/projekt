@@ -1,4 +1,5 @@
-/*! PhotoSwipe main CSS by Dmitry Semenov | photoswipe.com | MIT license */.pswp {
+/*! PhotoSwipe main CSS by Dmitry Semenov | photoswipe.com | MIT license */
+.pswp {
  display:none;
  position:absolute;
  width:100%;
